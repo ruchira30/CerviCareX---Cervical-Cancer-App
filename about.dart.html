@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>about.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #a9b7c6;}
+.s1 { color: #6a8759;}
+.s2 { color: #cc7832;}
+.s3 { color: #808080;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+about.dart</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">'package:flutter/material.dart'</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">'feed.dart'</span><span class="s2">;</span>
+<span class="s2">class </span><span class="s0">AboutPage </span><span class="s2">extends </span><span class="s0">StatelessWidget {</span>
+  <span class="s2">const </span><span class="s0">AboutPage({Key? key}) : </span><span class="s2">super</span><span class="s0">(key: key)</span><span class="s2">;</span>
+
+  <span class="s0">@override</span>
+  <span class="s0">Widget build(BuildContext context) {</span>
+    <span class="s2">return </span><span class="s0">Scaffold(</span>
+      <span class="s0">appBar: AppBar(</span>
+        <span class="s0">backgroundColor: Colors.blue.shade900</span><span class="s2">, </span><span class="s3">// Set app bar color</span>
+        <span class="s0">title: Text(</span><span class="s1">'About Cervical Cancer'</span><span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">body: ListView(</span>
+        <span class="s0">padding: EdgeInsets.all(</span><span class="s4">16.0</span><span class="s0">)</span><span class="s2">,</span>
+        <span class="s0">children: [</span>
+          <span class="s0">ListTile(</span>
+            <span class="s0">title: Text(</span>
+              <span class="s1">'Introduction'</span><span class="s2">,</span>
+              <span class="s0">style: TextStyle(fontSize: </span><span class="s4">20</span><span class="s2">, </span><span class="s0">fontWeight: FontWeight.bold)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">subtitle: Text(</span>
+              <span class="s1">'Each year, more than half a million women are diagnosed with cervical cancer and the disease results in over 300 000 deaths worldwide. High-risk subtypes of the human papilloma virus (HPV) are the cause of the disease in most cases. The disease is largely preventable. Approximately 90% of cervical cancers occur in low-income and middle-income countries that lack organised screening and HPV vaccination programmes. In high-income countries, cervical cancer incidence and mortality have more than halved over the past 30 years since the introduction of formal screening programmes. Treatment depends on disease extent at diagnosis and locally available resources, and might involve radical hysterectomy or chemoradiation, or a combination of both. Conservative, fertility-preserving surgical procedures have become standard of care for women with low-risk, early-stage disease.'</span><span class="s2">,</span>
+              <span class="s0">style: TextStyle(fontSize: </span><span class="s4">16</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+          <span class="s0">)</span><span class="s2">,</span>
+          <span class="s0">ListTile(</span>
+            <span class="s0">title: Text(</span>
+              <span class="s1">'What is Cervical Cancer?'</span><span class="s2">,</span>
+              <span class="s0">style: TextStyle(fontSize: </span><span class="s4">20</span><span class="s2">, </span><span class="s0">fontWeight: FontWeight.bold)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">subtitle: Text(</span>
+              <span class="s1">'Cervical cancer is cancer that starts in the cells of the cervix. The cervix is the lower, narrow end of the uterus (womb). The cervix connects the uterus to the vagina (birth canal). Cervical cancer usually develops slowly over time. Before cancer appears in the cervix, the cells of the cervix go through changes known as dysplasia, in which abnormal cells begin to appear in the cervical tissue. Over time, if not destroyed or removed, the abnormal cells may become cancer cells and start to grow and spread more deeply into the cervix and to surrounding areas..'</span><span class="s2">,</span>
+              <span class="s0">style: TextStyle(fontSize: </span><span class="s4">16</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+          <span class="s0">)</span><span class="s2">,</span>
+          <span class="s0">Divider()</span><span class="s2">,</span>
+          <span class="s0">ListTile(</span>
+            <span class="s0">title: Text(</span>
+              <span class="s1">'Two Parts of Cervix'</span><span class="s2">,</span>
+              <span class="s0">style: TextStyle(fontSize: </span><span class="s4">20</span><span class="s2">, </span><span class="s0">fontWeight: FontWeight.bold)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">subtitle: Text(</span>
+              <span class="s1">'The ectocervix (also called exocervix) is the outer part of the cervix that can be seen during a gynecologic exam. The ectocervix is covered with thin, flat cells called squamous cells.'</span>
+              <span class="s1">'The endocervix is the inner part of the cervix that forms a canal that connects the vagina to the uterus. The endocervix is covered with column-shaped glandular cells that make mucus.'</span><span class="s2">,</span>
+              <span class="s0">style: TextStyle(fontSize: </span><span class="s4">16</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+          <span class="s0">)</span><span class="s2">,</span>
+        <span class="s0">]</span><span class="s2">,</span>
+      <span class="s0">)</span><span class="s2">,</span>
+    <span class="s0">)</span><span class="s2">;</span>
+  <span class="s0">}</span>
+<span class="s0">}</span>
+</pre>
+</body>
+</html>

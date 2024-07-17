@@ -1,0 +1,159 @@
+<html>
+<head>
+<title>results.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #a9b7c6;}
+.s1 { color: #6a8759;}
+.s2 { color: #cc7832;}
+.s3 { color: #808080;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+results.dart</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">'package:flutter/material.dart'</span><span class="s2">;</span>
+
+<span class="s2">enum </span><span class="s0">RiskLevel { low</span><span class="s2">, </span><span class="s0">medium</span><span class="s2">, </span><span class="s0">high }</span>
+
+<span class="s2">class </span><span class="s0">ResultPage </span><span class="s2">extends </span><span class="s0">StatelessWidget {</span>
+  <span class="s2">final </span><span class="s0">Map&lt;String</span><span class="s2">, </span><span class="s0">String&gt; selectedOptions</span><span class="s2">;</span>
+
+  <span class="s0">ResultPage({required </span><span class="s2">this</span><span class="s0">.selectedOptions})</span><span class="s2">;</span>
+
+  <span class="s0">RiskLevel _calculateRiskLevel() {</span>
+    <span class="s0">bool hasLowRiskFactors =</span>
+        <span class="s0">selectedOptions[</span><span class="s1">'Age'</span><span class="s0">] == </span><span class="s1">'Under 20' </span><span class="s0">||</span>
+            <span class="s0">selectedOptions[</span><span class="s1">'Number of Sexual Partners'</span><span class="s0">] == </span><span class="s1">'0-1' </span><span class="s0">||</span>
+            <span class="s0">selectedOptions[</span><span class="s1">'First Sexual Intercourse Age'</span><span class="s0">] == </span><span class="s1">'Never' </span><span class="s0">||</span>
+            <span class="s0">selectedOptions[</span><span class="s1">'Number of Pregnancies'</span><span class="s0">] == </span><span class="s1">'Never' </span><span class="s0">||</span>
+            <span class="s0">selectedOptions[</span><span class="s1">'Smokes'</span><span class="s0">] == </span><span class="s1">'No' </span><span class="s0">||</span>
+            <span class="s0">selectedOptions[</span><span class="s1">'Hormonal Contraceptive Usage'</span><span class="s0">] == </span><span class="s1">'No' </span><span class="s0">||</span>
+            <span class="s0">selectedOptions[</span><span class="s1">'IUD'</span><span class="s0">] == </span><span class="s1">'No' </span><span class="s0">||</span>
+            <span class="s0">selectedOptions[</span><span class="s1">'STDs'</span><span class="s0">] == </span><span class="s1">'No' </span><span class="s0">||</span>
+            <span class="s0">selectedOptions[</span><span class="s1">'HPV'</span><span class="s0">] == </span><span class="s1">'No' </span><span class="s0">||</span>
+            <span class="s0">selectedOptions[</span><span class="s1">'Dx'</span><span class="s0">] == </span><span class="s1">'No'</span><span class="s2">;</span>
+
+    <span class="s3">// Medium risk factors</span>
+    <span class="s0">bool hasMediumRiskFactors =</span>
+        <span class="s0">selectedOptions[</span><span class="s1">'Number of Sexual Partners'</span><span class="s0">] == </span><span class="s1">'More than 10' </span><span class="s0">||</span>
+            <span class="s0">selectedOptions[</span><span class="s1">'First Sexual Intercourse Age'</span><span class="s0">] == </span><span class="s1">'Under 16' </span><span class="s0">||</span>
+            <span class="s0">selectedOptions[</span><span class="s1">'Number of Pregnancies'</span><span class="s0">] == </span><span class="s1">'3 or more'</span><span class="s2">;</span>
+
+    <span class="s3">// High risk factors</span>
+    <span class="s0">bool hasHighRiskFactors =</span>
+        <span class="s0">selectedOptions[</span><span class="s1">'Smokes'</span><span class="s0">] == </span><span class="s1">'Yes' </span><span class="s0">||</span>
+            <span class="s0">selectedOptions[</span><span class="s1">'STDs'</span><span class="s0">] == </span><span class="s1">'Yes' </span><span class="s0">||</span>
+            <span class="s0">selectedOptions[</span><span class="s1">'HPV'</span><span class="s0">] == </span><span class="s1">'Yes' </span><span class="s0">||</span>
+            <span class="s0">(selectedOptions[</span><span class="s1">'First Sexual Intercourse Age'</span><span class="s0">] == </span><span class="s1">'Under 16' </span><span class="s0">&amp;&amp;</span>
+                <span class="s0">selectedOptions[</span><span class="s1">'Number of Pregnancies'</span><span class="s0">] != </span><span class="s1">'Never'</span><span class="s0">)</span><span class="s2">;</span>
+
+    <span class="s2">if </span><span class="s0">(hasHighRiskFactors) {</span>
+      <span class="s2">return </span><span class="s0">RiskLevel.high</span><span class="s2">;</span>
+    <span class="s0">} </span><span class="s2">else if </span><span class="s0">(hasMediumRiskFactors) {</span>
+      <span class="s2">return </span><span class="s0">RiskLevel.medium</span><span class="s2">;</span>
+    <span class="s0">} </span><span class="s2">else </span><span class="s0">{</span>
+      <span class="s2">return </span><span class="s0">RiskLevel.low</span><span class="s2">;</span>
+    <span class="s0">}</span>
+  <span class="s0">}</span>
+
+  <span class="s0">@override</span>
+  <span class="s0">Widget build(BuildContext context) {</span>
+    <span class="s0">RiskLevel riskLevel = _calculateRiskLevel()</span><span class="s2">;</span>
+
+    <span class="s0">Color indicatorColor</span><span class="s2">;</span>
+    <span class="s0">String riskMessage</span><span class="s2">;</span>
+    <span class="s2">switch </span><span class="s0">(riskLevel) {</span>
+      <span class="s2">case </span><span class="s0">RiskLevel.low:</span>
+        <span class="s0">indicatorColor = Colors.green</span><span class="s2">;</span>
+        <span class="s0">riskMessage = </span><span class="s1">'Low Risk'</span><span class="s2">;</span>
+        <span class="s2">break;</span>
+      <span class="s2">case </span><span class="s0">RiskLevel.medium:</span>
+        <span class="s0">indicatorColor = Colors.orange</span><span class="s2">;</span>
+        <span class="s0">riskMessage = </span><span class="s1">'Medium Risk'</span><span class="s2">;</span>
+        <span class="s2">break;</span>
+      <span class="s2">case </span><span class="s0">RiskLevel.high:</span>
+        <span class="s0">indicatorColor = Colors.red</span><span class="s2">;</span>
+        <span class="s0">riskMessage = </span><span class="s1">'High Risk'</span><span class="s2">;</span>
+        <span class="s2">break;</span>
+      <span class="s2">default</span><span class="s0">:</span>
+        <span class="s0">indicatorColor = Colors.grey</span><span class="s2">;</span>
+        <span class="s0">riskMessage = </span><span class="s1">'Unknown Risk'</span><span class="s2">;</span>
+    <span class="s0">}</span>
+
+    <span class="s2">return </span><span class="s0">Scaffold(</span>
+      <span class="s0">appBar: AppBar(</span>
+        <span class="s0">title: Text(</span><span class="s1">'Quiz Result'</span><span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">body: Center(</span>
+        <span class="s0">child: Column(</span>
+          <span class="s0">mainAxisAlignment: MainAxisAlignment.center</span><span class="s2">,</span>
+          <span class="s0">children: [</span>
+            <span class="s0">Text(</span>
+              <span class="s1">'Your quiz result'</span><span class="s2">,</span>
+              <span class="s0">style: TextStyle(fontSize: </span><span class="s4">24</span><span class="s2">, </span><span class="s0">fontWeight: FontWeight.bold)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">SizedBox(height: </span><span class="s4">20</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s3">// Display glowing ring indicator</span>
+            <span class="s0">Container(</span>
+              <span class="s0">width: </span><span class="s4">150</span><span class="s2">,</span>
+              <span class="s0">height: </span><span class="s4">150</span><span class="s2">,</span>
+              <span class="s0">decoration: BoxDecoration(</span>
+                <span class="s0">shape: BoxShape.circle</span><span class="s2">,</span>
+                <span class="s0">boxShadow: [</span>
+                  <span class="s0">BoxShadow(</span>
+                    <span class="s0">color: indicatorColor.withOpacity(</span><span class="s4">0.5</span><span class="s0">)</span><span class="s2">,</span>
+                    <span class="s0">spreadRadius: </span><span class="s4">10</span><span class="s2">,</span>
+                    <span class="s0">blurRadius: </span><span class="s4">20</span><span class="s2">,</span>
+                    <span class="s0">offset: Offset(</span><span class="s4">0</span><span class="s2">, </span><span class="s4">0</span><span class="s0">)</span><span class="s2">,</span>
+                  <span class="s0">)</span><span class="s2">,</span>
+                <span class="s0">]</span><span class="s2">,</span>
+              <span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">child: Center(</span>
+                <span class="s0">child: Container(</span>
+                  <span class="s0">width: </span><span class="s4">120</span><span class="s2">,</span>
+                  <span class="s0">height: </span><span class="s4">120</span><span class="s2">,</span>
+                  <span class="s0">decoration: BoxDecoration(</span>
+                    <span class="s0">shape: BoxShape.circle</span><span class="s2">,</span>
+                    <span class="s0">color: indicatorColor</span><span class="s2">,</span>
+                  <span class="s0">)</span><span class="s2">,</span>
+                  <span class="s0">child: Center(</span>
+                    <span class="s0">child: Text(</span>
+                      <span class="s0">riskMessage</span><span class="s2">,</span>
+                      <span class="s0">style: TextStyle(</span>
+                        <span class="s0">color: Colors.white</span><span class="s2">,</span>
+                        <span class="s0">fontSize: </span><span class="s4">20</span><span class="s2">,</span>
+                        <span class="s0">fontWeight: FontWeight.bold</span><span class="s2">,</span>
+                      <span class="s0">)</span><span class="s2">,</span>
+                    <span class="s0">)</span><span class="s2">,</span>
+                  <span class="s0">)</span><span class="s2">,</span>
+                <span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">SizedBox(height: </span><span class="s4">20</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s3">// Display risk level text below the indicator</span>
+            <span class="s0">Text(</span>
+              <span class="s1">'Risk Level: </span><span class="s0">$riskMessage</span><span class="s1">'</span><span class="s2">,</span>
+              <span class="s0">style: TextStyle(fontSize: </span><span class="s4">18</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">SizedBox(height: </span><span class="s4">20</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">ElevatedButton(</span>
+              <span class="s0">onPressed: () {</span>
+                <span class="s0">Navigator.pop(context)</span><span class="s2">;</span>
+              <span class="s0">}</span><span class="s2">,</span>
+              <span class="s0">child: Text(</span><span class="s1">'Go Back'</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+          <span class="s0">]</span><span class="s2">,</span>
+        <span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">)</span><span class="s2">,</span>
+    <span class="s0">)</span><span class="s2">;</span>
+  <span class="s0">}</span>
+
+
+<span class="s0">}</span></pre>
+</body>
+</html>

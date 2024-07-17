@@ -1,0 +1,159 @@
+<html>
+<head>
+<title>feed.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #a9b7c6;}
+.s1 { color: #6a8759;}
+.s2 { color: #cc7832;}
+.s3 { color: #808080;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+feed.dart</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">'package:flutter/material.dart'</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">'package:flutter/services.dart'</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">'about.dart'</span><span class="s2">; </span><span class="s3">// Import AboutPage</span>
+<span class="s0">import </span><span class="s1">'hpv.dart'</span><span class="s2">; </span><span class="s3">// Import HPVPage</span>
+<span class="s0">import </span><span class="s1">'india.dart'</span><span class="s2">; </span><span class="s3">// Import IndiaPage</span>
+<span class="s0">import </span><span class="s1">'screening.dart'</span><span class="s2">; </span><span class="s3">// Import ScreeningPage</span>
+<span class="s0">import </span><span class="s1">'quiz.dart'</span><span class="s2">;</span>
+
+<span class="s2">class </span><span class="s0">FeedPage </span><span class="s2">extends </span><span class="s0">StatelessWidget {</span>
+  <span class="s2">const </span><span class="s0">FeedPage({Key? key}) : </span><span class="s2">super</span><span class="s0">(key: key)</span><span class="s2">;</span>
+
+  <span class="s0">@override</span>
+  <span class="s0">Widget build(BuildContext context) {</span>
+    <span class="s0">SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(</span>
+      <span class="s0">statusBarColor: Colors.transparent</span><span class="s2">, </span><span class="s3">// Transparent status bar</span>
+    <span class="s0">))</span><span class="s2">;</span>
+
+    <span class="s2">return </span><span class="s0">Scaffold(</span>
+      <span class="s0">appBar: PreferredSize(</span>
+        <span class="s0">preferredSize: Size.fromHeight(kToolbarHeight)</span><span class="s2">,</span>
+        <span class="s0">child: AppBar(</span>
+          <span class="s0">backgroundColor: Colors.blue.shade900</span><span class="s2">, </span><span class="s3">// Dark blue color</span>
+          <span class="s0">title: Text(</span>
+            <span class="s1">'CerviCareX'</span><span class="s2">,</span>
+            <span class="s0">style: TextStyle(color: Colors.white)</span><span class="s2">,</span>
+          <span class="s0">)</span><span class="s2">,</span>
+          <span class="s0">leading: Builder(</span>
+            <span class="s0">builder: (BuildContext context) {</span>
+              <span class="s2">return </span><span class="s0">IconButton(</span>
+                <span class="s0">icon: </span><span class="s2">const </span><span class="s0">Icon(Icons.menu)</span><span class="s2">,</span>
+                <span class="s0">onPressed: () {</span>
+                  <span class="s0">Scaffold.of(context).openDrawer()</span><span class="s2">;</span>
+                <span class="s0">}</span><span class="s2">,</span>
+              <span class="s0">)</span><span class="s2">;</span>
+            <span class="s0">}</span><span class="s2">,</span>
+          <span class="s0">)</span><span class="s2">,</span>
+        <span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">drawer: Drawer(</span>
+        <span class="s0">child: ListView(</span>
+          <span class="s0">padding: EdgeInsets.zero</span><span class="s2">,</span>
+          <span class="s0">children: [</span>
+            <span class="s0">DrawerHeader(</span>
+              <span class="s0">decoration: BoxDecoration(</span>
+                <span class="s0">color: Colors.lightBlueAccent.shade400</span><span class="s2">,</span>
+              <span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">child: Text(</span>
+                <span class="s1">'Options'</span><span class="s2">,</span>
+                <span class="s0">style: TextStyle(</span>
+                  <span class="s0">color: Colors.white</span><span class="s2">,</span>
+                  <span class="s0">fontSize: </span><span class="s4">24</span><span class="s2">,</span>
+                <span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">ListTile(</span>
+              <span class="s0">title: Text(</span><span class="s1">'Book Appointments'</span><span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">onTap: () {</span>
+                <span class="s3">// Navigate to book appointments page</span>
+              <span class="s0">}</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">ListTile(</span>
+              <span class="s0">title: Text(</span><span class="s1">'Quiz'</span><span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">onTap: () {</span>
+                <span class="s0">Navigator.push(</span>
+                  <span class="s0">context</span><span class="s2">,</span>
+                  <span class="s0">MaterialPageRoute(builder: (context) =&gt; QuizPage())</span><span class="s2">,</span>
+                <span class="s0">)</span><span class="s2">;</span>
+              <span class="s0">}</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+          <span class="s0">]</span><span class="s2">,</span>
+        <span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">body: Container(</span>
+        <span class="s0">color: Colors.white</span><span class="s2">,</span>
+        <span class="s0">child: GridView.count(</span>
+          <span class="s0">crossAxisCount: </span><span class="s4">2</span><span class="s2">, </span><span class="s3">// Two columns</span>
+          <span class="s0">padding: EdgeInsets.all(</span><span class="s4">16.0</span><span class="s0">)</span><span class="s2">,</span>
+          <span class="s0">crossAxisSpacing: </span><span class="s4">16.0</span><span class="s2">,</span>
+          <span class="s0">mainAxisSpacing: </span><span class="s4">16.0</span><span class="s2">,</span>
+          <span class="s0">childAspectRatio: </span><span class="s4">2.5</span><span class="s2">, </span><span class="s3">// Aspect ratio for each block</span>
+          <span class="s0">children: [</span>
+            <span class="s0">_buildOptionBlock(context</span><span class="s2">, </span><span class="s1">'About'</span><span class="s2">, </span><span class="s0">AboutPage())</span><span class="s2">,</span>
+            <span class="s0">_buildOptionBlock(context</span><span class="s2">, </span><span class="s1">'HPV'</span><span class="s2">, </span><span class="s0">HPVPage())</span><span class="s2">,</span>
+            <span class="s0">_buildOptionBlock(context</span><span class="s2">, </span><span class="s1">'India'</span><span class="s2">, </span><span class="s0">IndiaPage())</span><span class="s2">,</span>
+            <span class="s0">_buildOptionBlock(context</span><span class="s2">, </span><span class="s1">'Screening'</span><span class="s2">, </span><span class="s0">ScreeningPage())</span><span class="s2">,</span>
+          <span class="s0">]</span><span class="s2">,</span>
+        <span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">bottomNavigationBar: BottomNavigationBar(</span>
+        <span class="s0">items: </span><span class="s2">const </span><span class="s0">&lt;BottomNavigationBarItem&gt;[</span>
+          <span class="s0">BottomNavigationBarItem(</span>
+            <span class="s0">icon: Icon(Icons.home)</span><span class="s2">,</span>
+            <span class="s0">label: </span><span class="s1">'Home'</span><span class="s2">,</span>
+          <span class="s0">)</span><span class="s2">,</span>
+          <span class="s0">BottomNavigationBarItem(</span>
+            <span class="s0">icon: Icon(Icons.person)</span><span class="s2">,</span>
+            <span class="s0">label: </span><span class="s1">'Profile'</span><span class="s2">,</span>
+          <span class="s0">)</span><span class="s2">,</span>
+        <span class="s0">]</span><span class="s2">,</span>
+        <span class="s0">selectedItemColor: Colors.blue</span><span class="s2">, </span><span class="s3">// Change the color of the selected item</span>
+        <span class="s0">unselectedItemColor: Colors.grey</span><span class="s2">, </span><span class="s3">// Change the color of unselected items</span>
+      <span class="s0">)</span><span class="s2">,</span>
+    <span class="s0">)</span><span class="s2">;</span>
+  <span class="s0">}</span>
+
+  <span class="s0">Widget _buildOptionBlock(BuildContext context</span><span class="s2">, </span><span class="s0">String title</span><span class="s2">, </span><span class="s0">Widget page) {</span>
+    <span class="s2">return </span><span class="s0">GestureDetector(</span>
+      <span class="s0">onTap: () {</span>
+        <span class="s0">Navigator.push(</span>
+          <span class="s0">context</span><span class="s2">,</span>
+          <span class="s0">MaterialPageRoute(builder: (context) =&gt; page)</span><span class="s2">,</span>
+        <span class="s0">)</span><span class="s2">;</span>
+      <span class="s0">}</span><span class="s2">,</span>
+      <span class="s0">child: Container(</span>
+        <span class="s0">decoration: BoxDecoration(</span>
+          <span class="s0">color: Colors.blue.shade200</span><span class="s2">, </span><span class="s3">// Faded blue color</span>
+          <span class="s0">borderRadius: BorderRadius.circular(</span><span class="s4">10</span><span class="s0">)</span><span class="s2">,</span>
+          <span class="s0">boxShadow: [</span>
+            <span class="s0">BoxShadow(</span>
+              <span class="s0">color: Colors.black.withOpacity(</span><span class="s4">0.2</span><span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">blurRadius: </span><span class="s4">5</span><span class="s2">,</span>
+              <span class="s0">offset: Offset(</span><span class="s4">0</span><span class="s2">, </span><span class="s4">2</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+          <span class="s0">]</span><span class="s2">,</span>
+        <span class="s0">)</span><span class="s2">,</span>
+        <span class="s0">child: Center(</span>
+          <span class="s0">child: Padding(</span>
+            <span class="s0">padding: </span><span class="s2">const </span><span class="s0">EdgeInsets.all(</span><span class="s4">8.0</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">child: Text(</span>
+              <span class="s0">title</span><span class="s2">,</span>
+              <span class="s0">style: TextStyle(color: Colors.blue.shade900</span><span class="s2">, </span><span class="s0">fontSize: </span><span class="s4">16</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+          <span class="s0">)</span><span class="s2">,</span>
+        <span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">)</span><span class="s2">,</span>
+    <span class="s0">)</span><span class="s2">;</span>
+  <span class="s0">}</span>
+<span class="s0">}</span>
+</pre>
+</body>
+</html>
